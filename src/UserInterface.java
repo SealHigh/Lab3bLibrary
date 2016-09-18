@@ -20,7 +20,7 @@ public class UserInterface {
     }
 
     public void menu() {
-    BFM.deSerializeFromFile(fileName, library.getBooks());
+    //BFM.deSerializeFromFile(fileName, library.getBooks());
         boolean running =true;
             while (running){
                 System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
@@ -64,8 +64,21 @@ public class UserInterface {
     public void addBook() {
         System.out.println("Enter a title for the book: ");
         String title = getInput();
+        System.out.println("Enter an author of the book: ");
+        ArrayList<Author> authors = new ArrayList<>();
+        Author author = new Author(getInput());
+        authors.add(author);
+        String input = null;
+        while(true) {
+            System.out.println("Enter another author if there are any, else exit (q): ");
+            input = getInput();
+            if(input.equals("q"))
+                break;
+            else
+                authors.add(new Author(input));
+        }
 
-        library.addBook(new Book(title));
+        library.addBook(new Book(title, authors));
         System.out.println("'"+title+"'"+" has been added to the library");
     }
 
