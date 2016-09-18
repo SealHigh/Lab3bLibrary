@@ -16,10 +16,11 @@ public class UserInterface {
 
     public void addBook() {
 
-        Book book = new Book();
 
 
-        library.addBook(scanner.next());
+        System.out.println("Enter a title for the book: ");
+        Book book = new Book(scanner.next()); //Creates a book with the title
+        library.addBook(book);
     }
 
     public void getBooksByTitle(String title) {
