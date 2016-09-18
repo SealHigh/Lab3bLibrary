@@ -47,9 +47,8 @@ public class UserInterface {
 
     private void printLibrary(){
         ArrayList<Book> books = library.getBooks();
-        for (Book book: books) {
+        for (Book book: books)
             System.out.println(book.toString());
-        }
     }
 
     public void addBook() {
