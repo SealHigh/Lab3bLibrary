@@ -1,6 +1,7 @@
 package Library;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Martin on 2016-09-18.
@@ -18,10 +19,14 @@ public class CollectionOfBooks {
     }
 
     public ArrayList<Book> getBooksByTitle(String title) {
-        ArrayList<Book> booksByTitle;
+        ArrayList<Book> booksByTitle = new ArrayList<>();
 
         for(Book book: books)
             if(book.getTitle().contains(title))
-        return null;
+                books.add(book);
+
+        Collections.sort(books, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
+
+        return booksByTitle;
     }
 }
