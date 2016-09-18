@@ -54,16 +54,6 @@ public class CollectionOfBooks {
         return books;
     }
 
-    public Book getBook(int i){
-        try {
-            return books.get(i);
-        }
-        catch (Exception ex){
-            System.out.println(ex);
-        }
-        return null;
-    }
-
     public ArrayList<Book> getBooksByTitle(String title) {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
