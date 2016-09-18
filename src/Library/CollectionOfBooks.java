@@ -26,12 +26,8 @@ public class CollectionOfBooks {
         books.remove(book);
     }
 
-    public void printLibrary(){
-        for (Book book: books
-             ) {
-            System.out.println(book.toString());
-
-        }
+    public ArrayList<Book> getBooks(){
+        return books;
     }
 
     public Book getBook(int i){

@@ -45,8 +45,13 @@ public class UserInterface {
             library.removeBook(book);
     }
 
-    public void printLibrary(){
-        library.printLibrary();
+    private void printLibrary(){
+        ArrayList<Book> books = library.getBooks();
+        for (Book book: books
+                ) {
+            System.out.println(book.toString());
+
+        }
     }
 
     public void addBook() {
