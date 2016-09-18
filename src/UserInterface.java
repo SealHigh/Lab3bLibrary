@@ -22,7 +22,7 @@ public class UserInterface {
                 String answer = getInput();
                 switch (answer) {
                     case "a": addBook(); break;
-                    case "s": getBooks();
+                    case "s": getBooks();break;
                     case "r": removeBook(); break;//remover here
                     case "p": printLibrary(); break;
                     default:
@@ -35,8 +35,7 @@ public class UserInterface {
             while (!scanner.hasNext()) {
                return scanner.nextLine();
             }
-
-        return scanner.next();
+        return scanner.nextLine();
 
     }
 
