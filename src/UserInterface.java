@@ -1,5 +1,8 @@
 
+import FileHandler.BooksFileManager;
 import Library.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -20,7 +23,16 @@ public class UserInterface {
     }
 
     public void menu() {
-    //BFM.deSerializeFromFile(fileName, library.getBooks());
+
+        try {
+            System.out.println("Added library");
+            library.deSerializeFromFile(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
         boolean running =true;
             while (running){
                 System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
@@ -35,10 +47,15 @@ public class UserInterface {
                             break;
                 }
             }
+        try {
+            library.serializeToFile(fileName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String getInput(){
-            while (!scanner.hasNext()) {
+            while (!scanner.hasNextLine()) {
                return scanner.nextLine();
             }
         return scanner.nextLine();
