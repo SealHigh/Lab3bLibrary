@@ -13,8 +13,7 @@ public class Book {
     private double price;
     private ArrayList<Author> authors;
 
-    public Book(String title){
-        this.title = title;
+    public Book(){
         authors = new ArrayList<>();
     }
 
@@ -26,35 +25,11 @@ public class Book {
         return authors;
     }
 
-    public String getIsbn() {
-        return isbn;
-    }
-
-    public void setIsbn(String isbn) {
-        this.isbn = isbn;
-    }
-
     public String getTitle() {
         return title;
     }
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public int getEdition() {
-        return edition;
-    }
-
-    public void setEdition(int edition) {
-        this.edition = edition;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 }
