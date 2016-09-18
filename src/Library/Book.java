@@ -37,4 +37,13 @@ public class Book {
     public String getISBN() {
         return isbn;
     }
+
+    @Override
+    public String toString() {
+        return String.format("Title: %s, Edition: %d, Authors: %s, ISBN: %s",
+                title,
+                edition,
+                authors,
+                isbn);
+    }
 }
