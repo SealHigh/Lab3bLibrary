@@ -62,8 +62,9 @@ public class UserInterface {
 
     public void getBooksByTitle() {
         System.out.println("Enter a title for the book: ");
-        String title = getInput();
-
+        ArrayList<Book> books = library.getBooksByTitle(getInput());
+        for(Book book: books)
+            System.out.println(book.toString());
     }
 
     public void getBooksByAuthor() {
@@ -74,7 +75,10 @@ public class UserInterface {
     }
 
     public void getBooksByISBN() {
-
+        System.out.println("Enter an ISBN for the book: ");
+        ArrayList<Book> books = library.getBooksByISBN(getInput());
+        for(Book book: books)
+            System.out.println(book.toString());
     }
 
 }
