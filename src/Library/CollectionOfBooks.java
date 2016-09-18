@@ -8,9 +8,9 @@ import java.util.ArrayList;
 public class CollectionOfBooks {
     private ArrayList<Book> books;
 
-    public CollectionOfBooks(ArrayList<Book> collectionOfBooks) {
+    public CollectionOfBooks() {
         books = new ArrayList<>();
-        books.addAll(collectionOfBooks);
+//        books.addAll(collectionOfBooks);
     }
 
     public void addBook(Book book) {
@@ -18,10 +18,11 @@ public class CollectionOfBooks {
     }
 
     public ArrayList<Book> getBooksByTitle(String title) {
-        ArrayList<Book> booksByTitle;
+        ArrayList<Book> booksByTitle = new ArrayList<>();
 
         for(Book book: books)
             if(book.getTitle().contains(title))
-        return null;
+                booksByTitle.add(book);
+        return booksByTitle;
     }
 }

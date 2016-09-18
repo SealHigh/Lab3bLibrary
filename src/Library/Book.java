@@ -13,7 +13,8 @@ public class Book {
     private double price;
     private ArrayList<Author> authors;
 
-    public Book(){
+    public Book(String title){
+        this.title = title;
         authors = new ArrayList<>();
     }
 
@@ -21,7 +22,7 @@ public class Book {
         authors.add(new Author(name));
     }
 
-    public ArrayList getAuthors(){
+    public ArrayList<Author> getAuthors(){
         return authors;
     }
 
