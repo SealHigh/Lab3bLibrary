@@ -26,6 +26,14 @@ public class CollectionOfBooks {
         books.remove(book);
     }
 
+    public void removeBookByISBN(String isbn) {
+        for(Book book: books)
+            if(book.getISBN().equals(isbn)) {
+                removeBook(book);
+                break;
+            }
+    }
+
     public ArrayList<Book> getBooks(){
         return books;
     }
@@ -44,7 +52,7 @@ public class CollectionOfBooks {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
         for(Book book: books)
-            if(book.getTitle().trim().contains(title))
+            if(book.getTitle().toLowerCase().trim().contains(title))
                 booksByTitle.add(book);
 
         Collections.sort(booksByTitle, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
@@ -68,7 +76,7 @@ public class CollectionOfBooks {
         ArrayList<Book> booksByISBN = new ArrayList<>();
 
         for(Book book: books) {
-            if(book.getISBN().trim().contains(isbn))
+            if(book.getISBN().toLowerCase().trim().contains(isbn))
                 booksByISBN.add(book);
         }
 
