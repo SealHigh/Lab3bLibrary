@@ -23,10 +23,22 @@ public class CollectionOfBooks {
 
         for(Book book: books)
             if(book.getTitle().contains(title))
-                books.add(book);
+                booksByTitle.add(book);
 
-        Collections.sort(books, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
+        Collections.sort(booksByTitle, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
 
         return booksByTitle;
+    }
+
+    public ArrayList<Book> getBooksByAuthor(Author author) {
+        ArrayList<Book> booksByAuthor = new ArrayList<>();
+
+        for(Book book: books)
+            if(book.getAuthors().contains(author))
+                booksByAuthor.add(book);
+
+        Collections.sort(booksByAuthor, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
+
+        return booksByAuthor;
     }
 }
