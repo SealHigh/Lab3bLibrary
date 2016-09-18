@@ -11,6 +11,8 @@ public class UserInterface {
 
     private CollectionOfBooks library;
     private Scanner scanner;
+    private BooksFileManager BFM;
+    private String fileName = "library.txt";
 
     public UserInterface(){
         library = new CollectionOfBooks();
@@ -18,6 +20,7 @@ public class UserInterface {
     }
 
     public void menu() {
+    BFM.deSerializeFromFile(fileName, library.getBooks());
         boolean running =true;
             while (running){
                 System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
