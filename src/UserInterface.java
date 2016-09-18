@@ -18,11 +18,13 @@ public class UserInterface {
 
     public void menu() {
             while (true){
-                System.out.println("Add book(a), Search book (s), Remove Book (r)");
+                System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p)");
                 String answer = getInput();
                 switch (answer) {
                     case "a": addBook(); break;
                     case "s": getBooksByTitle();
+                    case "r": removeBook(); break;//remover here
+                    case "p": printLibrary(); break;
                     default:
                             break;
                 }
@@ -36,6 +38,16 @@ public class UserInterface {
 
         return scanner.next();
 
+    }
+
+    public void removeBook() {
+        Book book = library.getBook(0);
+        if(book != null)
+            library.removeBook(book);
+    }
+
+    public void printLibrary(){
+        library.printLibrary();
     }
 
     public void addBook() {

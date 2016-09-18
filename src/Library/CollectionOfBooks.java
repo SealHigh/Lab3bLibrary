@@ -15,11 +15,34 @@ public class CollectionOfBooks {
     }
 
     public void addBook(Book book) {
-        books.add(book);
+        try {
+            books.add(book);
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+        }
     }
 
     public void removeBook(Book book) {
         books.remove(book);
+    }
+
+    public void printLibrary(){
+        for (Book book: books
+             ) {
+            System.out.println(book.toString());
+
+        }
+    }
+
+    public Book getBook(int i){
+        try {
+            return books.get(i);
+        }
+        catch (Exception ex){
+            System.out.println(ex);
+        }
+        return null;
     }
 
     public ArrayList<Book> getBooksByTitle(String title) {
