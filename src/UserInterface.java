@@ -1,6 +1,7 @@
 
 import Library.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -17,14 +18,16 @@ public class UserInterface {
     }
 
     public void menu() {
-            while (true){
-                System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p)");
+        boolean running =true;
+            while (running){
+                System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
                 String answer = getInput();
                 switch (answer) {
                     case "a": addBook(); break;
                     case "s": getBooks();break;
                     case "r": removeBook(); break;//remover here
                     case "p": printLibrary(); break;
+                    case "q": running = false; break;
                     default:
                             break;
                 }
@@ -39,7 +42,7 @@ public class UserInterface {
 
     }
 
-    public void removeBook() {
+    private void removeBook() {
         System.out.println("Enter the ISBN of the book to remove: ");
         String isbn = getInput();
         library.removeBookByISBN(isbn);
@@ -47,6 +50,7 @@ public class UserInterface {
 
     private void printLibrary(){
         ArrayList<Book> books = library.getBooks();
+        Collections.sort(books, (book1, book2) -> book1.getISBN().compareTo(book2.getISBN()));
         for (Book book: books
                 ) {
             System.out.println(book.toString());
