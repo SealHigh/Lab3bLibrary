@@ -43,7 +43,7 @@ public class UserInterface {
     }
 
     private void removeBook() {
-        System.out.println("Enter the ISBN of the book to remove: ");
+        System.out.println(" Enter the ISBN of the book to remove: ");
         String isbn = getInput();
         library.removeBookByISBN(isbn);
     }
