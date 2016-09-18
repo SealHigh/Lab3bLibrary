@@ -23,7 +23,7 @@ public class UserInterface {
                 switch (answer) {
                     case "a": addBook(); break;
                     case "s": getBooksByTitle();
-                        default:
+                    default:
                             break;
                 }
             }
