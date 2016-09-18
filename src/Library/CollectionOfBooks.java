@@ -11,7 +11,6 @@ public class CollectionOfBooks {
 
     public CollectionOfBooks() {
         books = new ArrayList<>();
-//        books.addAll(collectionOfBooks);
     }
 
     public void addBook(Book book) {

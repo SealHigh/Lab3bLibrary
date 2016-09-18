@@ -1,6 +1,8 @@
 import Library.Book;
 import Library.CollectionOfBooks;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -22,7 +24,7 @@ public class UserInterface {
                 String answer = getInput();
                 switch (answer) {
                     case "a": addBook(); break;
-                    case "s": getBooksByTitle();
+                    case "s": getBooks();
                     case "r": removeBook(); break;//remover here
                     case "p": printLibrary(); break;
                     default:
@@ -58,9 +60,31 @@ public class UserInterface {
         System.out.println("'"+title+"'"+" has been added to the library");
     }
 
+    public void getBooks() {
+        System.out.println("Search by: Title(1), Author(2), ISBN(3)");
+        String answer = getInput();
+        switch (answer) {
+            case "1": getBooksByTitle(); break;
+            case "2": getBooksByAuthor(); break;
+            case "3": getBooksByISBN(); break;
+            default: break;
+        }
+    }
+
     public void getBooksByTitle() {
         System.out.println("Enter a title for the book: ");
         String title = getInput();
+
+    }
+
+    public void getBooksByAuthor() {
+        System.out.println("Enter the name of the author: ");
+        ArrayList<Book> books = library.getBooksByAuthor(new Author(getInput()));
+        for(Book book: books)
+            System.out.println(book.toString());
+    }
+
+    public void getBooksByISBN() {
 
     }
 
