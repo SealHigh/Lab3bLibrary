@@ -1,7 +1,5 @@
-import Library.Book;
-import Library.CollectionOfBooks;
 
-import java.lang.reflect.Array;
+import Library.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
