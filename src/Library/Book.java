@@ -14,9 +14,10 @@ public class Book implements Serializable{
     private double price;
     private ArrayList<Author> authors;
 
-    public Book(String title){
+    public Book(String title, ArrayList<Author> authors){
         this.title = title;
-        authors = new ArrayList<>();
+        this.authors = new ArrayList<>();
+        this.authors.addAll(authors);
     }
 
     public void addAuthor(String name){

@@ -1,6 +1,7 @@
 
 import Library.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -54,8 +55,21 @@ public class UserInterface {
     public void addBook() {
         System.out.println("Enter a title for the book: ");
         String title = getInput();
+        System.out.println("Enter an author of the book: ");
+        ArrayList<Author> authors = new ArrayList<>();
+        Author author = new Author(getInput());
+        authors.add(author);
+        String input = null;
+        while(true) {
+            System.out.println("Enter another author if there are any else exit (q): ");
+            input = getInput();
+            if(input.equals("q"))
+                break;
+            else
+                authors.add(new Author(input));
+        }
 
-        library.addBook(new Book(title));
+        library.addBook(new Book(title, authors));
         System.out.println("'"+title+"'"+" has been added to the library");
     }
 
