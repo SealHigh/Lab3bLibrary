@@ -61,7 +61,7 @@ public class UserInterface {
         authors.add(author);
         String input = null;
         while(true) {
-            System.out.println("Enter another author if there are any else exit (q): ");
+            System.out.println("Enter another author if there are any, else exit (q): ");
             input = getInput();
             if(input.equals("q"))
                 break;
