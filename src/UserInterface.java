@@ -40,9 +40,9 @@ public class UserInterface {
     }
 
     public void removeBook() {
-        Book book = library.getBook(0);
-        if(book != null)
-            library.removeBook(book);
+        System.out.println("Enter the ISBN of the book to remove: ");
+        String isbn = getInput();
+        library.removeBookByISBN(isbn);
     }
 
     private void printLibrary(){
