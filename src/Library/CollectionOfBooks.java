@@ -41,4 +41,17 @@ public class CollectionOfBooks {
 
         return booksByAuthor;
     }
+
+    public ArrayList<Book> getBooksByISBN(String isbn) {
+        ArrayList<Book> booksByISBN = new ArrayList<>();
+
+        for(Book book: books) {
+            if(book.getISBN().contains(isbn))
+                booksByISBN.add(book);
+        }
+
+        Collections.sort(booksByISBN, (book1, book2) -> book1.getISBN().compareTo(book2.getISBN()));
+
+        return booksByISBN;
+    }
 }
