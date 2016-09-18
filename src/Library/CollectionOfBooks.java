@@ -14,6 +14,24 @@ public class CollectionOfBooks {
     }
 
     public void addBook(Book book) {
+
+        /**
+         * Adds book with given title and a unique ISBN
+         */
+
+        if(books.size() == 0) //First book gets ISBN 0 the rest gets lowest possible unique ISBN
+            book.setIsbn("0");
+        else {
+            for (int i = 0; i < books.size() + 1; i++) {
+               boolean exist = false;
+                for (Book tempBook : books) {
+                    if (Integer.toString(i).equals(tempBook.getISBN()))
+                        exist = true;
+                }
+                if (!exist)
+                    book.setIsbn(Integer.toString(i));
+            }
+        }
         try {
             books.add(book);
         }
