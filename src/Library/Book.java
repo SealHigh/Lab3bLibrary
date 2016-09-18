@@ -1,11 +1,12 @@
 package Library;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Martin on 2016-09-18.
  */
-public class Book {
+public class Book implements Serializable{
 
     private String isbn;
     private String title;
