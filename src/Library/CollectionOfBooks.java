@@ -48,7 +48,7 @@ public class CollectionOfBooks {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
         for(Book book: books)
-            if(book.getTitle().contains(title))
+            if(book.getTitle().trim().contains(title))
                 booksByTitle.add(book);
 
         Collections.sort(booksByTitle, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
@@ -72,7 +72,7 @@ public class CollectionOfBooks {
         ArrayList<Book> booksByISBN = new ArrayList<>();
 
         for(Book book: books) {
-            if(book.getISBN().contains(isbn))
+            if(book.getISBN().trim().contains(isbn))
                 booksByISBN.add(book);
         }
 
