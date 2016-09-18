@@ -15,11 +15,10 @@ public class UserInterface {
     }
 
     public void addBook() {
-
-
-
         System.out.println("Enter a title for the book: ");
-        Book book = new Book(scanner.next()); //Creates a book with the title
+        Book book = new Book(scanner.nextLine()); //Creates a book with the title
+
+
         library.addBook(book);
     }
 
