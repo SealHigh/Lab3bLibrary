@@ -2,7 +2,9 @@
 import FileHandler.BooksFileManager;
 import Library.*;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -15,19 +17,21 @@ public class UserInterface {
     private CollectionOfBooks library;
     private Scanner scanner;
     private BooksFileManager BFM;
-    private String fileName = "library.txt";
+    private String fileName = "FileHandler/library.txt";
 
     public UserInterface(){
         library = new CollectionOfBooks();
         scanner = new Scanner(System.in);
+        BFM = new BooksFileManager();
     }
 
     public void menu() {
 
+
         try {
-            library.deSerializeFromFile(fileName);
-            System.out.println("Added library");
-        } catch (IOException e) {
+            BFM.deSerializeFromFile(fileName, library);
+        }
+        catch (IOException e) {
             System.out.println("No library found creating a new one");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -49,8 +53,8 @@ public class UserInterface {
             }
 
         try {
-            library.serializeToFile(fileName);
-            System.out.println("New library created");
+            BFM.serializeToFile(fileName, library);
+            System.out.println("Library saved, exiting...");
         } catch (IOException e) {
             e.printStackTrace();
         }
