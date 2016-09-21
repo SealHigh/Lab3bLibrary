@@ -19,8 +19,7 @@ public class BooksFileManager {
         ObjectOutputStream out = null;
 
         try {
-            out = new ObjectOutputStream(
-                    new FileOutputStream(filename));
+            out = new ObjectOutputStream(new FileOutputStream(filename));
             out.writeObject(library.getBooks());
         }
         finally {
@@ -41,12 +40,8 @@ public class BooksFileManager {
         ObjectInputStream in = null;
 
         try {
-            in = new ObjectInputStream(
-                    new FileInputStream(filename));
-            // readObject returns a reference of type Object, hence the down-cast
-            ArrayList<Book> books = new ArrayList<>();
-            books = (ArrayList<Book>) in.readObject();
-            library.setBooks(books);
+            in = new ObjectInputStream(new FileInputStream(filename));
+            library.setBooks((ArrayList<Book>) in.readObject());
         }
         finally {
             try {
