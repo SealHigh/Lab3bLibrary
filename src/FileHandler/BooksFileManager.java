@@ -38,7 +38,6 @@ public class BooksFileManager {
     public void deSerializeFromFile(String filename, CollectionOfBooks library) throws IOException, ClassNotFoundException {
 
         ObjectInputStream in = null;
-
         try {
             in = new ObjectInputStream(new FileInputStream(filename));
             library.setBooks((ArrayList<Book>) in.readObject());

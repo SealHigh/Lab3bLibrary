@@ -19,6 +19,7 @@ public class UserInterface {
     private BooksFileManager BFM;
     private String fileName = "FileHandler/library.txt";
 
+
     public UserInterface(){
         library = new CollectionOfBooks();
         scanner = new Scanner(System.in);
@@ -26,8 +27,39 @@ public class UserInterface {
     }
 
     public void menu() {
+        String answer;
+        getLibrary();
+            do {
+                System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
+                answer = scanInput(true);
+                switch (answer) {
+                    case "a": addBook(); break;
+                    case "s": getBooks();break;
+                    case "r": removeBook(); break;//remover here
+                    case "p": printLibrary(); break;
+                    default : break;
+                }
+            }while (!answer.equals("q"));
+       saveLibrary();
+    }
 
+    /**
+     * Gets user input
+     * @param format Format the string to only first char if true
+     * @return The string user typed, or a format version of it
+     */
+    private String scanInput(Boolean format){
+        if(!format)
+               return scanner.nextLine();
+        else
+               return ""+scanner.nextLine().toLowerCase().charAt(0);
+    }
 
+    /**
+     * Use BookFileManager to retrieve an already existing library
+     * and handle possible exceptions.
+     */
+    private void getLibrary(){
         try {
             BFM.deSerializeFromFile(fileName, library);
         }
@@ -36,22 +68,13 @@ public class UserInterface {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
-        boolean running =true;
-            while (running){
-                System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
-                String answer = scanInput();
-                switch (answer) {
-                    case "a": addBook(); break;
-                    case "s": getBooks();break;
-                    case "r": removeBook(); break;//remover here
-                    case "p": printLibrary(); break;
-                    case "q": running = false; break;
-                    default:
-                            break;
-                }
-            }
-
+    /**
+     * Save object library to a file using BookFileManager
+     * and handle possible exceptions
+     */
+    private void saveLibrary(){
         try {
             BFM.serializeToFile(fileName, library);
             System.out.println("Library saved, exiting...");
@@ -60,17 +83,9 @@ public class UserInterface {
         }
     }
 
-    private String scanInput(){
-            while (!scanner.hasNextLine()) {
-               return scanner.nextLine();
-            }
-        return scanner.nextLine();
-
-    }
-
     private void removeBook() {
         System.out.println(" Enter the ISBN of the book to remove: ");
-        String isbn = scanInput();
+        String isbn = scanInput(false);
         library.removeBookByISBN(isbn);
     }
 
@@ -95,7 +110,7 @@ public class UserInterface {
         String temp = "";
         while (temp.isEmpty()){
             System.out.println(question);
-            userString = scanInput();
+            userString = scanInput(false);
             temp = userString.replaceAll("\\s",""); //Remove blank character
         }
         return userString;
@@ -120,12 +135,12 @@ public class UserInterface {
     }
 
     public void getBooks() {
-        System.out.println("Search by: Title(1), Author(2), ISBN(3)");
-        String answer = scanInput();
+        System.out.println("Search by: Title (t), Author(a), ISBN(i)");
+        String answer = scanInput(true);
         switch (answer) {
-            case "1": getBooksByTitle(); break;
-            case "2": getBooksByAuthor(); break;
-            case "3": getBooksByISBN(); break;
+            case "t": getBooksByTitle(); break;
+            case "a": getBooksByAuthor(); break;
+            case "i": getBooksByISBN(); break;
             default: break;
         }
     }
@@ -139,14 +154,14 @@ public class UserInterface {
 
     public void getBooksByAuthor() {
         System.out.println("Enter the name of the author: ");
-        ArrayList<Book> books = library.getBooksByAuthor(new Author(scanInput()));
+        ArrayList<Book> books = library.getBooksByAuthor(new Author(scanInput(false)));
         for(Book book: books)
             System.out.println(book.toString());
     }
 
     public void getBooksByISBN() {
         System.out.println("Enter an ISBN for the book: ");
-        ArrayList<Book> books = library.getBooksByISBN(scanInput());
+        ArrayList<Book> books = library.getBooksByISBN(scanInput(false));
         for(Book book: books)
             System.out.println(book.toString());
     }
