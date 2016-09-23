@@ -24,7 +24,7 @@ public class CollectionOfBooks implements Serializable {
      */
     public void addBook(Book book) {
         if (books.size() == 0) //First book gets ISBN 0 the rest gets lowest possible unique ISBN
-            book.setIsbn("0");
+            book.setISBN("0");
         else {
             for (int i = 0; i < books.size() + 1; i++) {
                 boolean exist = false;
@@ -33,14 +33,11 @@ public class CollectionOfBooks implements Serializable {
                         exist = true;
                 }
                 if (!exist)
-                    book.setIsbn(Integer.toString(i));
+                    book.setISBN(Integer.toString(i));
             }
         }
-        try {
-            books.add(book);
-        } catch (Exception ex) {
-            System.out.println(ex);
-        }
+
+        books.add(book);
     }
 
     public void removeBook(Book book) {
