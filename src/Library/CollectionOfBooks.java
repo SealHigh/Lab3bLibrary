@@ -7,6 +7,10 @@ import java.util.Collections;
 /**
  * Created by Martin on 2016-09-18.
  */
+/**
+ * @author Timothy Holmsten
+ * @author Martin Renstrom
+ */
 public class CollectionOfBooks implements Serializable {
     private ArrayList<Book> books;
 

@@ -9,6 +9,11 @@ import java.util.ArrayList;
 /**
  * Created by timothy on 18/09/16.
  */
+
+/**
+ * @author Timothy Holmsten
+ * @author Martin Renstrom
+ */
 public class BooksFileManager {
 
     /**
