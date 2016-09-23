@@ -21,7 +21,7 @@ public class UserInterface {
     private CollectionOfBooks library;
     private Scanner scanner;
     private BooksFileManager BFM;
-    private String fileName = "FileHandler/library.txt";
+    private String fileName = "FileHandler/library.ser";
 
 
     public UserInterface(){
