@@ -103,7 +103,7 @@ public class CollectionOfBooks {
         finally {
             try {
                 if(out != null)	out.close();
-            } catch(Exception e) {}
+            } catch(Exception e) {e.printStackTrace();}
         }
     }
 
@@ -121,7 +121,7 @@ public class CollectionOfBooks {
         finally {
             try {
                 if(in != null)	in.close();
-            } catch(Exception e) {}
+            } catch(Exception e) {e.printStackTrace();}
         }
     }
 }
