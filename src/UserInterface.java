@@ -1,10 +1,8 @@
 
-import FileHandler.BooksFileManager;
+import Library.BooksFileManager;
 import Library.*;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -22,7 +20,7 @@ public class UserInterface {
     private CollectionOfBooks library;
     private Scanner scanner;
     private BooksFileManager BFM;
-    private String fileName = "FileHandler/library.ser";
+    private String fileName = "Library/library.ser";
 
 
     public UserInterface() {

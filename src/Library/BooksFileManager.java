@@ -1,10 +1,8 @@
-package FileHandler;
+package Library;
 
-import Library.Book;
 import Library.CollectionOfBooks;
 
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  * Created by timothy on 18/09/16.
