@@ -1,12 +1,13 @@
 package Library;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 
 /**
  * Created by Martin on 2016-09-18.
  */
-public class CollectionOfBooks {
+public class CollectionOfBooks implements Serializable {
     private ArrayList<Book> books;
 
     public CollectionOfBooks() {

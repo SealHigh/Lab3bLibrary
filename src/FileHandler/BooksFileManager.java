@@ -20,7 +20,8 @@ public class BooksFileManager {
 
         try {
             out = new ObjectOutputStream(new FileOutputStream(filename));
-            out.writeObject(library.getBooks());
+            //out.writeObject(library.getBooks());
+            out.writeObject(library);
         }
         finally {
             try {
@@ -40,7 +41,8 @@ public class BooksFileManager {
         ObjectInputStream in = null;
         try {
             in = new ObjectInputStream(new FileInputStream(filename));
-            library.setBooks((ArrayList<Book>) in.readObject());
+            //library.setBooks((ArrayList<Book>) in.readObject());
+            library.setBooks(((CollectionOfBooks) in.readObject()).getBooks());
         }
         finally {
             try {
