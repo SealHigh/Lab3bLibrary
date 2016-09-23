@@ -7,6 +7,7 @@ import java.util.Collections;
 /**
  * Created by Martin on 2016-09-18.
  */
+
 /**
  * @author Timothy Holmsten
  * @author Martin Renstrom
@@ -22,12 +23,12 @@ public class CollectionOfBooks implements Serializable {
      * Adds book with given title and a unique ISBN
      */
     public void addBook(Book book) {
-        if(books.size() == 0) //First book gets ISBN 0 the rest gets lowest possible unique ISBN
+        if (books.size() == 0) //First book gets ISBN 0 the rest gets lowest possible unique ISBN
             book.setIsbn("0");
         else {
             for (int i = 0; i < books.size() + 1; i++) {
                 boolean exist = false;
-                for (Book b: books) {
+                for (Book b : books) {
                     if (Integer.toString(i).equals(b.getISBN()))
                         exist = true;
                 }
@@ -37,8 +38,7 @@ public class CollectionOfBooks implements Serializable {
         }
         try {
             books.add(book);
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex);
         }
     }
@@ -48,25 +48,26 @@ public class CollectionOfBooks implements Serializable {
     }
 
     public void removeBookByISBN(String isbn) {
-        for(Book book: books)
-            if(book.getISBN().equals(isbn)) {
+        for (Book book : books)
+            if (book.getISBN().equals(isbn)) {
                 removeBook(book);
                 break;
             }
     }
 
-    public void setBooks(ArrayList<Book> books){
+    public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
 
-    public ArrayList<Book> getBooks(){
+    public ArrayList<Book> getBooks() {
         return books;
     }
+
     public ArrayList<Book> getBooksByTitle(String title) {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
-        for(Book book: books)
-            if(book.getTitle().toLowerCase().trim().contains(title))
+        for (Book book : books)
+            if (book.getTitle().toLowerCase().trim().contains(title))
                 booksByTitle.add(book);
 
         Collections.sort(booksByTitle, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
@@ -77,8 +78,8 @@ public class CollectionOfBooks implements Serializable {
     public ArrayList<Book> getBooksByAuthor(Author author) {
         ArrayList<Book> booksByAuthor = new ArrayList<>();
 
-        for(Book book: books)
-            if(book.getAuthors().contains(author))
+        for (Book book : books)
+            if (book.getAuthors().contains(author))
                 booksByAuthor.add(book);
 
         Collections.sort(booksByAuthor, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
@@ -89,8 +90,8 @@ public class CollectionOfBooks implements Serializable {
     public ArrayList<Book> getBooksByISBN(String isbn) {
         ArrayList<Book> booksByISBN = new ArrayList<>();
 
-        for(Book book: books) {
-            if(book.getISBN().toLowerCase().trim().contains(isbn))
+        for (Book book : books) {
+            if (book.getISBN().toLowerCase().trim().contains(isbn))
                 booksByISBN.add(book);
         }
 

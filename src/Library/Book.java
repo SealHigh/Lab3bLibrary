@@ -6,11 +6,12 @@ import java.util.ArrayList;
 /**
  * Created by Martin on 2016-09-18.
  */
+
 /**
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
-public class Book implements Serializable{
+public class Book implements Serializable {
 
     private String isbn;
     private String title;
@@ -18,17 +19,17 @@ public class Book implements Serializable{
     private double price;
     private ArrayList<Author> authors;
 
-    public Book(String title, ArrayList<Author> authors){
+    public Book(String title, ArrayList<Author> authors) {
         this.title = title;
         this.authors = new ArrayList<>();
         this.authors.addAll(authors);
     }
 
-    public void addAuthor(String name){
+    public void addAuthor(String name) {
         authors.add(new Author(name));
     }
 
-    public ArrayList<Author> getAuthors(){
+    public ArrayList<Author> getAuthors() {
         return authors;
     }
 

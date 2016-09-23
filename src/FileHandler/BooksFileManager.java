@@ -27,11 +27,11 @@ public class BooksFileManager {
             out = new ObjectOutputStream(new FileOutputStream(filename));
             //out.writeObject(library.getBooks());
             out.writeObject(library);
-        }
-        finally {
+        } finally {
             try {
-                if(out != null)	out.close();
-            } catch(Exception e) {}
+                if (out != null) out.close();
+            } catch (Exception e) {
+            }
         }
     }
 
@@ -48,11 +48,11 @@ public class BooksFileManager {
             in = new ObjectInputStream(new FileInputStream(filename));
             //library.setBooks((ArrayList<Book>) in.readObject());
             library.setBooks(((CollectionOfBooks) in.readObject()).getBooks());
-        }
-        finally {
+        } finally {
             try {
-                if(in != null)	in.close();
-            } catch(Exception e) {}
+                if (in != null) in.close();
+            } catch (Exception e) {
+            }
         }
     }
 }
