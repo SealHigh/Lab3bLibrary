@@ -1,6 +1,5 @@
 package Library;
 
-import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -51,10 +50,13 @@ public class CollectionOfBooks {
             }
     }
 
+    public void setBooks(ArrayList<Book> books){
+        this.books = books;
+    }
+
     public ArrayList<Book> getBooks(){
         return books;
     }
-
     public ArrayList<Book> getBooksByTitle(String title) {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
@@ -90,38 +92,5 @@ public class CollectionOfBooks {
         Collections.sort(booksByISBN, (book1, book2) -> book1.getISBN().compareTo(book2.getISBN()));
 
         return booksByISBN;
-    }
-
-    public void serializeToFile(String filename) throws IOException {
-        ObjectOutputStream out = null;
-
-        try {
-            out = new ObjectOutputStream(
-                    new FileOutputStream(filename));
-            out.writeObject(books);
-        }
-        finally {
-            try {
-                if(out != null)	out.close();
-            } catch(Exception e) {e.printStackTrace();}
-        }
-    }
-
-    @SuppressWarnings("unchecked")
-    public void deSerializeFromFile(String filename) throws IOException, ClassNotFoundException {
-
-        ObjectInputStream in = null;
-
-        try {
-            in = new ObjectInputStream(
-                    new FileInputStream(filename));
-            // readObject returns a reference of type Object, hence the down-cast
-            books = (ArrayList<Book>) in.readObject();
-        }
-        finally {
-            try {
-                if(in != null)	in.close();
-            } catch(Exception e) {e.printStackTrace();}
-        }
     }
 }
