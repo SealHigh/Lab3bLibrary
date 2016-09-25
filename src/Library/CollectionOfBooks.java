@@ -24,7 +24,8 @@ public class CollectionOfBooks implements Serializable {
     }
 
     /**
-     * Adds book with given title and a unique ISBN
+     * This method will generate an ISBN to the book so the book will always have an unique ISBN
+     * @param book The book to add
      */
     public void addBook(Book book) {
         if (books.size() == 0) //First book gets ISBN 0 the rest gets lowest possible unique ISBN
