@@ -25,6 +25,7 @@ public class CollectionOfBooks implements Serializable {
 
     /**
      * This method will generate an ISBN to the book so the book will always have an unique ISBN
+     *
      * @param book The book to add
      */
     public void addBook(Book book) {
@@ -46,13 +47,20 @@ public class CollectionOfBooks implements Serializable {
     }
 
     /**
+     * Removes a given book if the book exist from the books list
      *
-     * @param book
+     * @param book The book to remove
      */
     public void removeBook(Book book) {
         books.remove(book);
     }
 
+    /**
+     * Searches books for a specific ISBN of a book,
+     * if the ISBN was found, remove the book that is associated with the ISBN
+     *
+     * @param isbn The ISBN to search for
+     */
     public void removeBookByISBN(String isbn) {
         for (Book book : books)
             if (book.getISBN().equals(isbn)) {
@@ -61,14 +69,31 @@ public class CollectionOfBooks implements Serializable {
             }
     }
 
+    /**
+     * Set the books ArrayList to a specific ArrayList
+     *
+     * @param books The ArrayList to be set of books
+     */
     public void setBooks(ArrayList<Book> books) {
         this.books = books;
     }
 
+    /**
+     * Returns all the elements in the books ArrayList
+     *
+     * @return All elements in books
+     */
     public ArrayList<Book> getBooks() {
         return books;
     }
 
+    /**
+     * Searches books that contains a part of a title,
+     * the books that contained the title gets sorted using BookComparator's compare and then returned
+     *
+     * @param title What title to search for
+     * @return A sorted ArrayList of books that contained the title
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Book> getBooksByTitle(String title) {
         ArrayList<Book> booksByTitle = new ArrayList<>();
@@ -84,6 +109,13 @@ public class CollectionOfBooks implements Serializable {
         return booksByTitle;
     }
 
+    /**
+     * Searches books that was written by a specific author
+     * the books that was written by the author gets sorted using BookComparator's compare and then returned
+     *
+     * @param author The author that wrote the book
+     * @return A sorted ArrayList of books that was written by the author
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Book> getBooksByAuthor(Author author) {
         ArrayList<Book> booksByAuthor = new ArrayList<>();
@@ -99,6 +131,12 @@ public class CollectionOfBooks implements Serializable {
         return booksByAuthor;
     }
 
+    /**
+     * Searches books that contains a part of an ISBN,
+     * the books that contained the ISBN gets sorted using BookComparator's compare and then returned
+     * @param isbn The ISBN to search for
+     * @return A sorted ArrayList of books that contained the ISBN
+     */
     @SuppressWarnings("unchecked")
     public ArrayList<Book> getBooksByISBN(String isbn) {
         ArrayList<Book> booksByISBN = new ArrayList<>();
