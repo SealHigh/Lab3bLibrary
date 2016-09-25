@@ -45,6 +45,10 @@ public class CollectionOfBooks implements Serializable {
         books.add(book);
     }
 
+    /**
+     *
+     * @param book
+     */
     public void removeBook(Book book) {
         books.remove(book);
     }
