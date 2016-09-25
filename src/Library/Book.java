@@ -25,8 +25,8 @@ public class Book implements Serializable {
         this.authors.addAll(authors);
     }
 
-    public void addAuthor(String name) {
-        authors.add(new Author(name));
+    public void addAuthor(Author author) {
+        authors.add(author);
     }
 
     public ArrayList<Author> getAuthors() {

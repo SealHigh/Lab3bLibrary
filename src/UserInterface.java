@@ -18,6 +18,7 @@ import java.util.Scanner;
 public class UserInterface {
 
     private CollectionOfBooks library;
+    private CollectionOfAuthors libraryAuthors;
     private Scanner scanner;
     private BooksFileManager BFM;
     private String fileName = "Library/library.ser";
@@ -32,6 +33,7 @@ public class UserInterface {
     public void menu() {
         String answer;
         getLibrary();
+        loadAuthors();
         do {
             System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
             answer = scanInput(true);
@@ -44,7 +46,7 @@ public class UserInterface {
                     break;
                 case "r":
                     removeBook();
-                    break;//remover here
+                    break;
                 case "p":
                     printLibrary();
                     break;
@@ -96,22 +98,28 @@ public class UserInterface {
         }
     }
 
+    private void loadAuthors() {
+        ArrayList<Author> authors = new ArrayList<>();
+        libraryAuthors = new CollectionOfAuthors(authors);
+        for (Book book : library.getBooks())
+            libraryAuthors.addAuthors(book.getAuthors());
+    }
+
     private void removeBook() {
-        System.out.println(" Enter the ISBN of the book to remove: ");
-        String isbn = scanInput(false);
+        String isbn = getUserInput("Enter the ISBN of the book to remove: ");
         library.removeBookByISBN(isbn);
     }
 
     private void printLibrary() {
         ArrayList<Book> books = library.getBooks();
-        Collections.sort(books, (book1, book2) -> book1.getISBN().compareTo(book2.getISBN()));
+        Collections.sort(books, new BookComparator());
         for (Book book : books) {
             System.out.println(book.toString());
         }
     }
 
     /**
-     * Retrivie user input, and make sure its not empty or filled with blank
+     * Retrieve user input, and make sure its not empty or filled with blank
      * characters such as space or tab
      *
      * @param question
@@ -128,25 +136,34 @@ public class UserInterface {
         return userString;
     }
 
-    public void addBook() {
+    private void addBook() {
         String title = getUserInput("Enter a title for the book: ");
         String name = getUserInput("Enter an author of the book: ");
-        ArrayList<Author> authors = new ArrayList<>();
-        authors.add(new Author(name));
-        String input = null;
+
+        Book book = new Book(title, new ArrayList<>());
+        library.addBook(book);
+
+        if (libraryAuthors.authorExist(new Author(name)))
+            book.addAuthor(libraryAuthors.getAuthor(name));
+        else
+            book.addAuthor(new Author(name));
+
         while (true) {
-            input = getUserInput("Enter another author if there are any, else exit (q): ");
-            if (input.equals("q"))
+            name = getUserInput("Enter another author if there are any, else exit (q): ");
+
+            if (name.equals("q"))
                 break;
+            else if (libraryAuthors.authorExist(new Author(name)))
+                book.addAuthor(libraryAuthors.getAuthor(name));
             else
-                authors.add(new Author(input));
+                book.addAuthor(new Author(name));
         }
 
-        library.addBook(new Book(title, authors));
+        libraryAuthors.addAuthors(book.getAuthors());
         System.out.format("'%s' has been added to the library \n", title);
     }
 
-    public void getBooks() {
+    private void getBooks() {
         System.out.println("Search by: Title (t), Author(a), ISBN(i)");
         String answer = scanInput(true);
         switch (answer) {
@@ -164,23 +181,23 @@ public class UserInterface {
         }
     }
 
-    public void getBooksByTitle() {
+    private void getBooksByTitle() {
         String title = getUserInput("Enter a title for the book: ");
         ArrayList<Book> books = library.getBooksByTitle(title);
         for (Book book : books)
             System.out.println(book.toString());
     }
 
-    public void getBooksByAuthor() {
-        System.out.println("Enter the name of the author: ");
-        ArrayList<Book> books = library.getBooksByAuthor(new Author(scanInput(false)));
+    private void getBooksByAuthor() {
+        String author = getUserInput("Enter the name of the author: ");
+        ArrayList<Book> books = library.getBooksByAuthor(new Author(author));
         for (Book book : books)
             System.out.println(book.toString());
     }
 
-    public void getBooksByISBN() {
-        System.out.println("Enter an ISBN for the book: ");
-        ArrayList<Book> books = library.getBooksByISBN(scanInput(false));
+    private void getBooksByISBN() {
+        String isbn = getUserInput("Enter an ISBN for the book: ");
+        ArrayList<Book> books = library.getBooksByISBN(isbn);
         for (Book book : books)
             System.out.println(book.toString());
     }

@@ -16,6 +16,7 @@ import java.util.List;
  * @author Martin Renstrom
  */
 public class CollectionOfBooks implements Serializable {
+
     private ArrayList<Book> books;
 
     public CollectionOfBooks() {
@@ -107,5 +108,10 @@ public class CollectionOfBooks implements Serializable {
         Collections.sort(booksByISBN, comparator);
 
         return booksByISBN;
+    }
+
+    @Override
+    public String toString() {
+        return books.toString();
     }
 }
