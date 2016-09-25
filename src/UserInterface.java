@@ -91,6 +91,7 @@ public class UserInterface {
             BFM.serializeToFile(fileName, library);
             System.out.println("Library saved, exiting...");
         } catch (IOException e) {
+            System.out.println("Could not save library");
             e.printStackTrace();
         }
     }
@@ -104,10 +105,8 @@ public class UserInterface {
     private void printLibrary() {
         ArrayList<Book> books = library.getBooks();
         Collections.sort(books, (book1, book2) -> book1.getISBN().compareTo(book2.getISBN()));
-        for (Book book : books
-                ) {
+        for (Book book : books) {
             System.out.println(book.toString());
-
         }
     }
 

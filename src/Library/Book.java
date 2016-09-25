@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
-public class Book implements Serializable, Comparable<Book> {
+public class Book implements Serializable {
 
     private String isbn;
     private String title;
@@ -57,4 +57,9 @@ public class Book implements Serializable, Comparable<Book> {
     public void setISBN(String isbn) {
         this.isbn = isbn;
     }
+
+    /*@Override
+    public int compareTo(Book book) {
+        return 1;
+    }*/
 }

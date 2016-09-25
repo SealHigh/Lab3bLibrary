@@ -1,8 +1,11 @@
 package Library;
 
 import java.io.Serializable;
+import java.io.UncheckedIOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by Martin on 2016-09-18.
@@ -60,6 +63,7 @@ public class CollectionOfBooks implements Serializable {
         return books;
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Book> getBooksByTitle(String title) {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
@@ -67,11 +71,14 @@ public class CollectionOfBooks implements Serializable {
             if (book.getTitle().toLowerCase().trim().contains(title))
                 booksByTitle.add(book);
 
-        Collections.sort(booksByTitle, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
+        Comparator comparator = new BookComparator();
+
+        Collections.sort(booksByTitle, comparator);
 
         return booksByTitle;
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Book> getBooksByAuthor(Author author) {
         ArrayList<Book> booksByAuthor = new ArrayList<>();
 
@@ -79,11 +86,14 @@ public class CollectionOfBooks implements Serializable {
             if (book.getAuthors().contains(author))
                 booksByAuthor.add(book);
 
-        Collections.sort(booksByAuthor, (book1, book2) -> book1.getTitle().compareTo(book2.getTitle()));
+        Comparator comparator = new BookComparator();
+
+        Collections.sort(booksByAuthor, comparator);
 
         return booksByAuthor;
     }
 
+    @SuppressWarnings("unchecked")
     public ArrayList<Book> getBooksByISBN(String isbn) {
         ArrayList<Book> booksByISBN = new ArrayList<>();
 
@@ -92,7 +102,9 @@ public class CollectionOfBooks implements Serializable {
                 booksByISBN.add(book);
         }
 
-        Collections.sort(booksByISBN, (book1, book2) -> book1.getISBN().compareTo(book2.getISBN()));
+        Comparator comparator = new BookComparator();
+
+        Collections.sort(booksByISBN, comparator);
 
         return booksByISBN;
     }
