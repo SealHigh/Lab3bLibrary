@@ -36,7 +36,7 @@ public class UserInterface {
         loadAuthors();
         do {
             System.out.println("Add book(a), Search book (s), Remove Book (r), Print library (p), Quit program (q)");
-            answer = scanInput(true);
+            answer = scanString(true);
             switch (answer) {
                 case "a":
                     addBook();
@@ -57,18 +57,7 @@ public class UserInterface {
         saveLibrary();
     }
 
-    /**
-     * Gets user input
-     *
-     * @param format Format the string to only first char if true
-     * @return The string user typed, or a format version of it
-     */
-    private String scanInput(Boolean format) {
-        if (!format)
-            return scanner.nextLine();
-        else
-            return "" + scanner.nextLine().toLowerCase().charAt(0);
-    }
+
 
     /**
      * Use BookFileManager to retrieve an already existing library
@@ -106,7 +95,7 @@ public class UserInterface {
     }
 
     private void removeBook() {
-        String isbn = getUserInput("Enter the ISBN of the book to remove: ");
+        String isbn = getUserString("Enter the ISBN of the book to remove: ");
         library.removeBookByISBN(isbn);
     }
 
@@ -118,6 +107,20 @@ public class UserInterface {
         }
     }
 
+
+    /**
+     * Gets user input
+     *
+     * @param format Format the string to only first char if true
+     * @return The string user typed, or a format version of it
+     */
+    private String scanString(Boolean format) {
+        if (!format)
+            return scanner.nextLine();
+        else
+            return "" + scanner.nextLine().toLowerCase().charAt(0);
+    }
+
     /**
      * Retrieve user input, and make sure its not empty or filled with blank
      * characters such as space or tab
@@ -125,32 +128,68 @@ public class UserInterface {
      * @param question
      * @return
      */
-    private String getUserInput(String question) {
+    private String getUserString(String question) {
         String userString = "";
         String temp = "";
         while (temp.isEmpty()) {
             System.out.println(question);
-            userString = scanInput(false);
+            userString = scanString(false);
             temp = userString.replaceAll("\\s", ""); //Remove blank character
         }
         return userString;
     }
 
+    /**
+     * Get user input int, if not a int ask again
+     * @param question text asking for int
+     * @return user input
+     */
+    private int getUserInt(String question) {
+        System.out.println(question);
+        while (!scanner.hasNextInt()) {
+            scanner.nextLine();
+            System.out.println("Int, please!");
+        }
+        int input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
+    }
+
+    /**
+     * Get user input double, if not a double ask again
+     * @param question text asking for double
+     * @return user input
+     */
+    private double getUserDouble(String question) {
+        System.out.println(question);
+        while (!scanner.hasNextDouble()) {
+            scanner.nextLine();
+            System.out.println("Double, please!");
+        }
+        double input = scanner.nextInt();
+        scanner.nextLine();
+        return input;
+    }
+
+    /**
+     * Adds a new book to library with a must have title and author
+     * ISBN is assigned automatically, could be changed to user input.
+     * Handles multiple authors and gives oppurtunity to add price and
+     * edition number.
+     */
     private void addBook() {
-        String title = getUserInput("Enter a title for the book: ");
-        String name = getUserInput("Enter an author of the book: ");
-
+        String title = getUserString("Enter a title for the book: ");
+        String name = getUserString("Enter an author of the book: ");
         Book book = new Book(title, new ArrayList<>());
-        library.addBook(book);
 
+        library.addBook(book);
         if (libraryAuthors.authorExist(new Author(name)))
             book.addAuthor(libraryAuthors.getAuthor(name));
         else
             book.addAuthor(new Author(name));
 
         while (true) {
-            name = getUserInput("Enter another author if there are any, else exit (q): ");
-
+            name = getUserString("Enter another author if there are any, else exit (q): ");
             if (name.equals("q"))
                 break;
             else if (libraryAuthors.authorExist(new Author(name)))
@@ -159,13 +198,19 @@ public class UserInterface {
                 book.addAuthor(new Author(name));
         }
 
+        int edition = getUserInt("Enter an edition for the book (0 for default): ");
+        double price = getUserDouble("Enter a price for the book (0 for default): ");
+        book.setEdition(edition);
+        book.setPrice(price);
+
+
         libraryAuthors.addAuthors(book.getAuthors());
         System.out.format("'%s' has been added to the library \n", title);
     }
 
     private void getBooks() {
         System.out.println("Search by: Title (t), Author(a), ISBN(i)");
-        String answer = scanInput(true);
+        String answer = scanString(true);
         switch (answer) {
             case "t":
                 getBooksByTitle();
@@ -182,21 +227,21 @@ public class UserInterface {
     }
 
     private void getBooksByTitle() {
-        String title = getUserInput("Enter a title for the book: ");
+        String title = getUserString("Enter a title for the book: ");
         ArrayList<Book> books = library.getBooksByTitle(title);
         for (Book book : books)
             System.out.println(book.toString());
     }
 
     private void getBooksByAuthor() {
-        String author = getUserInput("Enter the name of the author: ");
+        String author = getUserString("Enter the name of the author: ");
         ArrayList<Book> books = library.getBooksByAuthor(new Author(author));
         for (Book book : books)
             System.out.println(book.toString());
     }
 
     private void getBooksByISBN() {
-        String isbn = getUserInput("Enter an ISBN for the book: ");
+        String isbn = getUserString("Enter an ISBN for the book: ");
         ArrayList<Book> books = library.getBooksByISBN(isbn);
         for (Book book : books)
             System.out.println(book.toString());

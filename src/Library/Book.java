@@ -47,15 +47,24 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("Title: %s, Edition: %d, Authors: %s, ISBN: %s",
+        return String.format("Title: %s, Edition: %d, Authors: %s, ISBN: %s, Price: %.2f",
                 title,
                 edition,
                 authors,
-                isbn);
+                isbn,
+                price);
     }
 
     public void setISBN(String isbn) {
         this.isbn = isbn;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setEdition(int edition) {
+        this.edition = edition;
     }
 
     /*@Override
