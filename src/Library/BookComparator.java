@@ -12,9 +12,8 @@ import java.util.Comparator;
 public class BookComparator implements Comparator<Book> {
     @Override
     public int compare(Book book1, Book book2) {
-        int cmpPoints = 0;
-        cmpPoints += book1.getISBN().compareTo(book2.getISBN());
-        cmpPoints += book1.getTitle().compareTo(book2.getTitle());
-        return cmpPoints;
+        if(book1.getTitle().compareTo(book2.getTitle()) == 0)
+            return book1.getISBN().compareTo(book2.getISBN());
+        return book1.getTitle().compareTo(book2.getTitle());
     }
 }

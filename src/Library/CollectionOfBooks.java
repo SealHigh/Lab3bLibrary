@@ -100,8 +100,9 @@ public class CollectionOfBooks implements Serializable {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
         for (Book book : books)
-            if (book.getTitle().toLowerCase().trim().contains(title))
+            if (book.getTitle().toLowerCase().trim().contains(title.toLowerCase().trim())) {
                 booksByTitle.add(book);
+            }
 
         Comparator comparator = new BookComparator();
 
@@ -122,8 +123,9 @@ public class CollectionOfBooks implements Serializable {
         ArrayList<Book> booksByAuthor = new ArrayList<>();
 
         for (Book book : books)
-            if (book.getAuthors().contains(author))
-                booksByAuthor.add(book);
+            for (Author a : book.getAuthors())
+                if (a.getName().toLowerCase().trim().contains(author.getName().toLowerCase().trim()))
+                    booksByAuthor.add(book);
 
         Comparator comparator = new BookComparator();
 
@@ -135,6 +137,7 @@ public class CollectionOfBooks implements Serializable {
     /**
      * Searches books that contains a part of an ISBN,
      * the books that contained the ISBN gets sorted using BookComparator's compare and then returned
+     *
      * @param isbn The ISBN to search for
      * @return A sorted ArrayList of books that contained the ISBN
      */
