@@ -9,6 +9,10 @@ import java.util.ArrayList;
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
+
+/**
+ * This class is used to make sure we don't create unnecessary authors
+ */
 public class CollectionOfAuthors {
     private ArrayList<Author> authors;
 

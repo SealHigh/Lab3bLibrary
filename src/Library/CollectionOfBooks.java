@@ -15,6 +15,7 @@ import java.util.List;
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
+
 public class CollectionOfBooks implements Serializable {
 
     private ArrayList<Book> books;
