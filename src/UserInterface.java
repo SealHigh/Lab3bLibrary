@@ -23,7 +23,6 @@ public class UserInterface {
     private BooksFileManager BFM;
     private String fileName = "Library/library.ser";
 
-
     public UserInterface() {
         library = new CollectionOfBooks();
         scanner = new Scanner(System.in);
@@ -167,7 +166,7 @@ public class UserInterface {
             scanner.nextLine();
             System.out.println("Double, please!");
         }
-        double input = scanner.nextInt();
+        double input = scanner.nextDouble();
         scanner.nextLine();
         return input;
     }
