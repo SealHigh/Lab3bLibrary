@@ -23,7 +23,6 @@ public class UserInterface {
     private BooksFileManager BFM;
     private String fileName = "Library/library.ser";
 
-
     public UserInterface() {
         library = new CollectionOfBooks();
         scanner = new Scanner(System.in);
