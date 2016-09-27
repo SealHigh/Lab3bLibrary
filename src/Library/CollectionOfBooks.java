@@ -104,9 +104,7 @@ public class CollectionOfBooks implements Serializable {
                 booksByTitle.add(book);
             }
 
-        Comparator comparator = new BookComparator();
-
-        Collections.sort(booksByTitle, comparator);
+        Collections.sort(booksByTitle);
 
         return booksByTitle;
     }
@@ -127,9 +125,7 @@ public class CollectionOfBooks implements Serializable {
                 if (a.getName().toLowerCase().trim().contains(author.getName().toLowerCase().trim()))
                     booksByAuthor.add(book);
 
-        Comparator comparator = new BookComparator();
-
-        Collections.sort(booksByAuthor, comparator);
+        Collections.sort(booksByAuthor);
 
         return booksByAuthor;
     }
@@ -149,10 +145,7 @@ public class CollectionOfBooks implements Serializable {
             if (book.getISBN().toLowerCase().trim().contains(isbn))
                 booksByISBN.add(book);
         }
-
-        Comparator comparator = new BookComparator();
-
-        Collections.sort(booksByISBN, comparator);
+        Collections.sort(booksByISBN);
 
         return booksByISBN;
     }

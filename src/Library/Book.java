@@ -12,7 +12,7 @@ import java.util.Comparator;
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
-public class Book implements Serializable {
+public class Book implements Serializable, Comparable<Book> {
 
     private String isbn;
     private String title;
@@ -57,4 +57,18 @@ public class Book implements Serializable {
     public void setISBN(String isbn) {
         this.isbn = isbn;
     }
+
+
+    /**
+     * Compare each book by name, if same name sort by isbn
+     * @param book
+     * @return
+     */
+    @Override
+    public int compareTo(Book book) {
+        if(this.title.compareTo(book.getTitle()) == 0)
+            return this.isbn.compareTo(book.getISBN());
+        return this.title.compareTo(book.getTitle());
+    }
+
 }

@@ -100,7 +100,7 @@ public class UserInterface {
 
     private void printLibrary() {
         ArrayList<Book> books = library.getBooks();
-        Collections.sort(books, new BookComparator());
+        Collections.sort(books);
         for (Book book : books) {
             System.out.println(book.toString());
         }
@@ -108,7 +108,7 @@ public class UserInterface {
 
 
     /**
-     * Gets user input
+     * Gets user input in form of string
      *
      * @param format Format the string to only first char if true
      * @return The string user typed, or a format version of it
@@ -167,7 +167,7 @@ public class UserInterface {
             scanner.nextLine();
             System.out.println("Double, please!");
         }
-        double input = scanner.nextInt();
+        double input = scanner.nextDouble();
         scanner.nextLine();
         return input;
     }
