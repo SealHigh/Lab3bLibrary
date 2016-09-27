@@ -58,7 +58,6 @@ public class UserInterface {
     }
 
 
-
     /**
      * Use BookFileManager to retrieve an already existing library
      * and handle possible exceptions.
@@ -141,6 +140,7 @@ public class UserInterface {
 
     /**
      * Get user input int, if not a int ask again
+     *
      * @param question text asking for int
      * @return user input
      */
@@ -157,6 +157,7 @@ public class UserInterface {
 
     /**
      * Get user input double, if not a double ask again
+     *
      * @param question text asking for double
      * @return user input
      */
@@ -174,42 +175,41 @@ public class UserInterface {
     /**
      * Adds a new book to library with a must have title and author
      * ISBN is assigned automatically, could be changed to user input.
-     * Handles multiple authors and gives oppurtunity to add price and
+     * Handles multiple authors and gives opportunity to add price and
      * edition number.
      */
     private void addBook() {
         String title = getUserString("Enter a title for the book: ");
         String name = getUserString("Enter an author of the book: ");
-        Book book = new Book(title, new ArrayList<>());
+        Book tmpBook = new Book(title, new ArrayList<>(), 0, 0);
 
-        library.addBook(book);
+        //library.addBook(book);
         if (libraryAuthors.authorExist(new Author(name)))
-            book.addAuthor(libraryAuthors.getAuthor(name));
+            tmpBook.addAuthor(libraryAuthors.getAuthor(name));
         else
-            book.addAuthor(new Author(name));
+            tmpBook.addAuthor(new Author(name));
 
         while (true) {
             name = getUserString("Enter another author if there are any, else exit (q): ");
             if (name.equals("q"))
                 break;
             else if (libraryAuthors.authorExist(new Author(name)))
-                book.addAuthor(libraryAuthors.getAuthor(name));
+                tmpBook.addAuthor(libraryAuthors.getAuthor(name));
             else
-                book.addAuthor(new Author(name));
+                tmpBook.addAuthor(new Author(name));
         }
 
-        int edition = getUserInt("Enter an edition for the book (0 for default): ");
-        double price = getUserDouble("Enter a price for the book (0 for default): ");
-        book.setEdition(edition);
-        book.setPrice(price);
+        int edition = getUserInt("Enter an edition for the book: ");
+        double price = getUserDouble("Enter a price for the book: ");
+        Book book = new Book(tmpBook.getTitle(), tmpBook.getAuthors(), edition, price);
+        library.addBook(book);
 
-
-        libraryAuthors.addAuthors(book.getAuthors());
+        libraryAuthors.addAuthors(tmpBook.getAuthors());
         System.out.format("'%s' has been added to the library \n", title);
     }
 
     private void getBooks() {
-        System.out.println("Search by: Title (t), Author(a), ISBN(i)");
+        System.out.println("Search by: Title(t), Author(a), ISBN(i)");
         String answer = scanString(true);
         switch (answer) {
             case "t":

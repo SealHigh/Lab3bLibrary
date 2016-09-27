@@ -2,6 +2,7 @@ package Library;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by Martin on 2016-09-18.
@@ -19,10 +20,12 @@ public class Book implements Serializable {
     private double price;
     private ArrayList<Author> authors;
 
-    public Book(String title, ArrayList<Author> authors) {
+    public Book(String title, ArrayList<Author> authors, int edition, double price) {
         this.title = title;
         this.authors = new ArrayList<>();
         this.authors.addAll(authors);
+        this.edition = edition;
+        this.price = price;
     }
 
     public void addAuthor(Author author) {
@@ -35,10 +38,6 @@ public class Book implements Serializable {
 
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getISBN() {
@@ -57,13 +56,5 @@ public class Book implements Serializable {
 
     public void setISBN(String isbn) {
         this.isbn = isbn;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public void setEdition(int edition) {
-        this.edition = edition;
     }
 }
