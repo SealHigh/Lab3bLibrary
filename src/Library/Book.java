@@ -66,9 +66,4 @@ public class Book implements Serializable {
     public void setEdition(int edition) {
         this.edition = edition;
     }
-
-    /*@Override
-    public int compareTo(Book book) {
-        return 1;
-    }*/
 }
