@@ -90,7 +90,7 @@ public class CollectionOfBooks implements Serializable {
 
     /**
      * Searches books that contains a part of a title,
-     * the books that contained the title gets sorted using BookComparator's compare and then returned
+     * the books that contained the title gets sorted by the books compareTo and then returned
      *
      * @param title What title to search for
      * @return A sorted ArrayList of books that contained the title
@@ -100,9 +100,8 @@ public class CollectionOfBooks implements Serializable {
         ArrayList<Book> booksByTitle = new ArrayList<>();
 
         for (Book book : books)
-            if (book.getTitle().toLowerCase().trim().contains(title.toLowerCase().trim())) {
+            if (book.getTitle().toLowerCase().trim().contains(title.toLowerCase().trim()))
                 booksByTitle.add(book);
-            }
 
         Collections.sort(booksByTitle);
 
@@ -111,7 +110,7 @@ public class CollectionOfBooks implements Serializable {
 
     /**
      * Searches books that was written by a specific author
-     * the books that was written by the author gets sorted using BookComparator's compare and then returned
+     * the books that was written by the author gets sorted by the books compareTo and then returned
      *
      * @param author The author that wrote the book
      * @return A sorted ArrayList of books that was written by the author
@@ -132,7 +131,7 @@ public class CollectionOfBooks implements Serializable {
 
     /**
      * Searches books that contains a part of an ISBN,
-     * the books that contained the ISBN gets sorted using BookComparator's compare and then returned
+     * the books that contained the ISBN gets sorted by the books compareTo and then returned
      *
      * @param isbn The ISBN to search for
      * @return A sorted ArrayList of books that contained the ISBN
@@ -141,10 +140,10 @@ public class CollectionOfBooks implements Serializable {
     public ArrayList<Book> getBooksByISBN(String isbn) {
         ArrayList<Book> booksByISBN = new ArrayList<>();
 
-        for (Book book : books) {
+        for (Book book : books)
             if (book.getISBN().toLowerCase().trim().contains(isbn))
                 booksByISBN.add(book);
-        }
+
         Collections.sort(booksByISBN);
 
         return booksByISBN;
