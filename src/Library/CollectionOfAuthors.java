@@ -53,10 +53,21 @@ public class CollectionOfAuthors {
                 this.authors.add(author);
     }
 
+    /**
+     * Returns the ArrayList authors
+     *
+     * @return ArrayList<Author>
+     */
     public ArrayList<Author> getAuthors() {
         return authors;
     }
 
+    /**
+     * Iterating authors and checks if there is another author with same name,
+     * if it is return that author, else return null
+     * @param name Name of the author
+     * @return Author if found, else null
+     */
     public Author getAuthor(String name) {
         for (Author author : authors)
             if (author.getName().equals(name))
@@ -64,6 +75,11 @@ public class CollectionOfAuthors {
         return null;
     }
 
+    /**
+     * Used to check if the author already exists by iterating authors and see if they have the same name
+     * @param author Author to check if it already exist
+     * @return true if found, false if not found
+     */
     public boolean authorExist(Author author) {
         for (Author existingAuthor : authors)
             if (existingAuthor.getName().equals(author.getName()))
