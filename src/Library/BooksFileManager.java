@@ -15,8 +15,7 @@ import java.io.*;
 public class BooksFileManager {
 
     /**
-     * Call this method before the application exits, to store the books,
-     * in serialized form, on file the specified file.
+     * Saves all books in library to a file
      */
     public void serializeToFile(String filename, CollectionOfBooks library) throws IOException {
         ObjectOutputStream out = null;
@@ -34,8 +33,7 @@ public class BooksFileManager {
 
 
     /**
-     * Call this method at startup of the application, to deserialize the books
-     * from file the specified file.
+     * Fills library with books from already existing file
      */
     @SuppressWarnings("unchecked")
     public void deSerializeFromFile(String filename, CollectionOfBooks library) throws IOException, ClassNotFoundException {
