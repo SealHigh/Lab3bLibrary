@@ -12,6 +12,10 @@ import java.util.Comparator;
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
+
+/**
+ * This class is used to create book that are stored in CollectionOfBooks
+ */
 public class Book implements Serializable, Comparable<Book> {
 
     private String isbn;

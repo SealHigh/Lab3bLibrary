@@ -23,18 +23,13 @@ public class UserInterface {
     private BooksFileManager BFM;
     private String fileName = "Library/library.ser";
 
-    /**
-     * Initiate userinterface
-     */
     public UserInterface() {
         library = new CollectionOfBooks();
         scanner = new Scanner(System.in);
         BFM = new BooksFileManager();
     }
 
-    /**
-     * Display menu and take userinput
-     */
+
     public void menu() {
         String answer;
         getLibrary();
@@ -63,11 +58,6 @@ public class UserInterface {
     }
 
 
-    /**
-     * Use BookFileManager to retrieve an already existing library
-     * and handle possible exceptions. As if no file was found
-     * create a new one
-     */
     private void getLibrary() {
         try {
             BFM.deSerializeFromFile(fileName, library);
@@ -78,10 +68,6 @@ public class UserInterface {
         }
     }
 
-    /**
-     * Save object library to a file using BookFileManager
-     * and handle possible exceptions
-     */
     private void saveLibrary() {
         try {
             BFM.serializeToFile(fileName, library);
@@ -92,10 +78,6 @@ public class UserInterface {
         }
     }
 
-    /**
-     * Get a list of all authors used to make sure no duplicate
-     * of an author is created
-     */
     private void loadAuthors() {
         ArrayList<Author> authors = new ArrayList<>();
         libraryAuthors = new CollectionOfAuthors(authors);
@@ -108,9 +90,7 @@ public class UserInterface {
         library.removeBookByISBN(isbn);
     }
 
-    /**
-     * Creates new list and sorts library by defined sorting algorithm in comparable book
-     */
+
     private void printLibrary() {
         ArrayList<Book> books = library.getBooks();
         Collections.sort(books);
@@ -120,12 +100,6 @@ public class UserInterface {
     }
 
 
-    /**
-     * Gets user input in form of string
-     *
-     * @param format Format the string to only first char if true
-     * @return The string user typed, or a format version of it
-     */
     private String scanString(Boolean format) {
         if (!format)
             return scanner.nextLine();
@@ -133,13 +107,6 @@ public class UserInterface {
             return "" + scanner.nextLine().toLowerCase().charAt(0);
     }
 
-    /**
-     * Retrieve user input, and make sure its not empty or filled with blank
-     * characters such as space or tab
-     *
-     * @param question
-     * @return
-     */
     private String getUserString(String question) {
         String userString = "";
         String temp = "";
@@ -151,12 +118,6 @@ public class UserInterface {
         return userString;
     }
 
-    /**
-     * Get user input int, if not a int ask again
-     *
-     * @param question text asking for int
-     * @return user input
-     */
     private int getUserInt(String question) {
         System.out.println(question);
         while (!scanner.hasNextInt()) {
@@ -168,12 +129,6 @@ public class UserInterface {
         return input;
     }
 
-    /**
-     * Get user input double, if not a double ask again
-     *
-     * @param question text asking for double
-     * @return user input
-     */
     private double getUserDouble(String question) {
         System.out.println(question);
         while (!scanner.hasNextDouble()) {
@@ -185,12 +140,6 @@ public class UserInterface {
         return input;
     }
 
-    /**
-     * Adds a new book to library with a must have title and author
-     * ISBN is assigned automatically, could be changed to user input.
-     * Handles multiple authors and gives opportunity to add price and
-     * edition number.
-     */
     private void addBook() {
         String title = getUserString("Enter a title for the book: ");
         String name = getUserString("Enter an author of the book: ");
@@ -222,9 +171,6 @@ public class UserInterface {
     }
 
 
-    /**
-     * Menu for deciding what to search by ( title, author, isbn)
-     */
     private void searchBooks() {
         System.out.println("Search by: Title(t), Author(a), ISBN(i)");
         String answer = scanString(true);
@@ -243,18 +189,13 @@ public class UserInterface {
         }
     }
 
-    /**
-     * Creates a new list displaying only matching titles
-     */
     private void getBooksByTitle() {
         String title = getUserString("Enter a title for the book: ");
         ArrayList<Book> books = library.getBooksByTitle(title);
         for (Book book : books)
             System.out.println(book.toString());
     }
-    /**
-     * Creates a new list displaying only matching author
-     */
+
     private void getBooksByAuthor() {
         String author = getUserString("Enter the name of the author: ");
         ArrayList<Book> books = library.getBooksByAuthor(new Author(author));
@@ -262,14 +203,10 @@ public class UserInterface {
             System.out.println(book.toString());
     }
 
-    /**
-     * Creates a new list displaying only matching ISBN (doesn't have to be a list ISBN is unique)
-     */
     private void getBooksByISBN() {
         String isbn = getUserString("Enter an ISBN for the book: ");
         ArrayList<Book> books = library.getBooksByISBN(isbn);
         for (Book book : books)
             System.out.println(book.toString());
     }
-
 }

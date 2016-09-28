@@ -15,7 +15,9 @@ import java.util.List;
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
-
+/**
+ * This class is used to store all books in the library during runtime
+ */
 public class CollectionOfBooks implements Serializable {
 
     private ArrayList<Book> books;

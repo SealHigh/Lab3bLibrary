@@ -1,7 +1,5 @@
 package Library;
 
-import Library.CollectionOfBooks;
-
 import java.io.*;
 
 /**
@@ -11,6 +9,10 @@ import java.io.*;
 /**
  * @author Timothy Holmsten
  * @author Martin Renstrom
+ */
+
+/**
+ * This class is used save all book in CollectionOfBooks to a file
  */
 public class BooksFileManager {
 

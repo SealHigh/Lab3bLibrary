@@ -10,6 +10,10 @@ import java.io.Serializable;
  * @author Timothy Holmsten
  * @author Martin Renstrom
  */
+
+/**
+ * This class is used to create an author that is used in Book and CollectionOfAuthors
+ */
 public class Author implements Serializable {
 
     private String name;
