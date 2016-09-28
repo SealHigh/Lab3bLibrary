@@ -9,13 +9,10 @@ import java.util.List;
 
 /**
  * Created by Martin on 2016-09-18.
- */
 
-/**
  * @author Timothy Holmsten
  * @author Martin Renstrom
- */
-/**
+
  * This class is used to store all books in the library during runtime
  */
 public class CollectionOfBooks implements Serializable {
@@ -27,7 +24,7 @@ public class CollectionOfBooks implements Serializable {
     }
 
     /**
-     * This method will generate an ISBN to the book so the book will always have an unique ISBN
+     * This method will generate an ISBN to the book so the book will always have a unique ISBN
      *
      * @param book The book to add
      */
